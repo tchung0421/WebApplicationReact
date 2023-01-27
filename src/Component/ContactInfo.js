@@ -1,4 +1,6 @@
-export const ContactInfo = (props) => {
+import MapApp from "./Maps/CustomMap";
+
+export const ContactInfo = () => {
   return (
     <>
       <section className="p-5">
@@ -29,7 +31,7 @@ export const ContactInfo = (props) => {
               </ul>
             </div>
             <div className="col-md">
-              <div id="map"></div>
+              <MapApp></MapApp>
             </div>
           </div>
         </div>
