@@ -1,4 +1,7 @@
+
+
 export const ClassTypeSection = (props) => {
+
   return (
     <>
       <section className="p-5">

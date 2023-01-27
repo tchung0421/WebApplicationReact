@@ -5,7 +5,7 @@ export const ContactInfo = (props) => {
         <div className="container">
           <div className="row g-4">
             <div className="col-md">
-              <h2 className="text-center mb-4">Contact Info</h2>
+              <h2 className="text-center mb-4">Contact Information</h2>
               <ul className="list-group list-group-flush lead">
                 <li className="list-group-item">
                   <span className="fw-bold">Main Location:</span> 50 Main st

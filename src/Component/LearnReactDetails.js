@@ -1,4 +1,7 @@
-export const LearnReactDetails = (props) => {
+import react from "../img/react.svg"
+
+
+export const LearnReactDetails = () => {
   return (
     <>
       <section id="learn1" className="p-5 bg-dark text-light">
@@ -21,7 +24,7 @@ export const LearnReactDetails = (props) => {
               </a>
             </div>
             <div className="col-md">
-              <img src="img/react.svg" className="img-fluid" alt="" />
+              <img src={react} className="img-fluid" alt="" />
             </div>
           </div>
         </div>

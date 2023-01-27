@@ -1,11 +1,13 @@
-export const FundamentalsDetails = (props) => {
+import fundamentals from "../img/fundamentals.svg"
+
+export const FundamentalsDetails = () => {
   return (
     <>
       <section id="learn" className="p-5">
         <div className="container">
           <div className="row align-items-center justify-content-between">
             <div className="col-md">
-              <img src="img/fundamentals.svg" className="img-fluid" alt="" />
+              <img src={fundamentals} className="img-fluid" alt="" />
             </div>
             <div className="col-md p-5">
               <h2>Learn The Fundamentals</h2>

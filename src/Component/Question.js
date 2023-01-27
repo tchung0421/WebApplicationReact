@@ -1,6 +1,14 @@
+import { useState } from "react";
 
 
 export const Question = (props) => {
+
+  const [question, setQuestion] = useState(false);
+
+  if (question) {
+    setQuestion(true);
+  }
+
   return (
     <>
       <section id="questions" className="p-5">
@@ -15,7 +23,6 @@ export const Question = (props) => {
                   type="button"
                   data-bs-toggle="collapse"
                   data-bs-target="#question-one"
-                  aria-expanded="false"
                 >
                   Where exactly are you located?
                 </button>
