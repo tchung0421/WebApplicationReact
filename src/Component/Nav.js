@@ -1,7 +1,10 @@
 import { useState } from "react";
 
+const baseUrl = "http://localhost:8080"
+
 export const NavBar = (props) => {
-  const [items, setItems] = useState(props.items);
+
+  // const [items, setItems] = useState(props.items);
 
   return (
     <>
@@ -20,12 +23,10 @@ export const NavBar = (props) => {
           </button>
           <div className="collapse navbar-collapse" id="navmenu">
             <ul className="navbar-nav ms-auto">
-              {items.map((item, index) => {
+              {props.items.map((item, index) => {
                 return (
                   <li className="nav-item">
-                    <a href={item.href} className="nav-link">
-                      {item.text}
-                    </a>
+                    <a href={item.href} className="nav-link">{item.text}</a>
                   </li>
                 );
               })}
