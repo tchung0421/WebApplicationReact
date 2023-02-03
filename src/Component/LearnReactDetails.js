@@ -7,7 +7,7 @@ export const LearnReactDetails = () => {
       <section id="learn1" className="p-5 bg-dark text-light">
         <div className="container">
           <div className="row align-items-center justify-content-between">
-            <div className="col-md p-5">
+            <div className="col-md p-5 whiteColor">
               <h2>Learn React</h2>
               <p className="lead">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.

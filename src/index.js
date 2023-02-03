@@ -5,6 +5,8 @@ import { createBrowserRouter, RouterProvider, Route, Link } from "react-router-d
 import { Bootcamps } from './pages/Bootcamps';
 import { Home } from "./pages/HomePage";
 import BootcampDetails from "./pages/BootcampDetail";
+import { SignUpAndSigninPage } from "./pages/RegistrationPage";
+import { FetchData } from "./pages/FetchData";
 
 const router = createBrowserRouter([
 
@@ -55,11 +57,22 @@ const router = createBrowserRouter([
         </>
     )
   }
+  ,
+  {
+    path: "/login",
+    element: (
+        <>
+          <SignUpAndSigninPage></SignUpAndSigninPage>
+          <Link to="/login"></Link>
+        </>
+    )
+  }
 ])
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router}></RouterProvider>
+    {/* <FetchData></FetchData> */}
   </React.StrictMode>
 );

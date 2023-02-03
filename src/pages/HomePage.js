@@ -2,7 +2,7 @@ import { Footer } from "../Component/Footer";
 import { HeadSection } from "../Component/HeadSection";
 import { NavBar } from "../Component/Nav";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { SignUpSection } from "../Component/signUpSection1";
+import { SignUpSection } from "../Component/signUpSection";
 import { ClassTypeSection } from "../Component/ClassTypeSection";
 import { SocialMediaSection } from "../Component/SocialMediaSection";
 import { FundamentalsDetails } from "../Component/FundamentalsDetails";
@@ -34,6 +34,7 @@ export const Home = () => {
                     { text: "Contact", href: "/bootcamps" },
                     { text: "Abou Us", href: "/about" },
                     { text: "Bootcamps", href: "/bootcamps" },
+                    { text: "Login & Signup", href: "/login" }
                 ])
             }
         }

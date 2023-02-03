@@ -37,6 +37,7 @@ const Bootcamps = (props) => {
         { text: "Contact", href: "/contact" },
         { text: "About Us", href: "/aboutus" },
         { text: "Bootcamps", href: "/bootcamps" },
+        { text: "Login & Signup", href: "/login" }
     ]
 
     const [bootcamps, setBootcamps] = useState([])

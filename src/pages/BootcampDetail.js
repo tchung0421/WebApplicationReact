@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { BootcampData } from "../Component/BootcampData";
 import { Footer } from "../Component/Footer";
@@ -14,8 +15,8 @@ const BootcampDetails = () => {
         { text: "Contact", href: "/contact" },
         { text: "About Us", href: "/about" },
         { text: "Bootcamps", href: "/bootcamps" },
+        { text: "Login & Signup", href: "/login" }
     ]
-
 
     let [bootcampList, setBootcampList] = useState()
     let params = useParams();
@@ -26,17 +27,15 @@ const BootcampDetails = () => {
             try {
                 const response = await fetch("http://localhost:8080/uisettings/menus")
                 let json = response.json()
-                json
-                    .then(data => {
-                        setBootcampList(data)
-                        console.log("All Data ", data)
-                    })
-            } catch (error) {
+                json.then(data => {
+                    setBootcampList(data)
+                    console.log("All Data ", data)
+                })
+            } 
+            catch (error) {
                 let array = BootcampList.BootcampList
                 setBootcampList(array)
-
             }
-
         }
         getMenus() // IIF
         console.log("Dheeraj 123", bootcampList)
@@ -48,7 +47,6 @@ const BootcampDetails = () => {
     return (
         <>
          <NavBar items={menuItems}></NavBar>
-           
             {
                 bootcampItem.map(data => {
                     return (
