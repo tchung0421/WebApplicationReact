@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import { baseurl } from "../include/Urlinclude"
+import { Alert } from "react-bootstrap";
+import { baseurl } from "../include/Urlinclude";
+import AuthServices from "../Services/AuthServices";
 
 export const Registor = () => {
   const [authMode, setAuthMode] = useState("signin");
@@ -9,12 +11,17 @@ export const Registor = () => {
   const [email, setEmail] = useState("");
   const [lastname, setLastname] = useState("");
   const [mobilenumber, setMobilenumber] = useState("");
+  const [loginResponse, setLoginResponse] = useState({
+    state: false,
+    msg: "",
+  });
 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin");
   };
 
   function registeration(event) {
+    event.preventDefault();
     var data = JSON.stringify({
       email: email,
       firstName: firstname,
@@ -34,107 +41,147 @@ export const Registor = () => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        console.log(JSON.stringify(response));
       })
       .catch(function (error) {
         console.log(error);
       });
-    event.preventDefault();
   }
 
-  function Login(event) {
-    // var myHeaders = new Headers();
-    // myHeaders.append("Content-Type", "application/json");
+  async function Login(event) {
+    event.preventDefault();
+    try {
+      await AuthServices.login(email, password);
+      const storageUser = JSON.parse(AuthServices.getCurrentUser());
+      console.log("THE USER", storageUser);
+      if (storageUser) {
+        setLoginResponse(storageUser);
+      }
+      console.log("THE State", loginResponse);
+    } 
+    catch (errorMsg) {
+      setLoginResponse({
+        state: "Fatal! Need to contact Admin",
+        response: errorMsg,
+      });
+    }
 
-    // var raw = JSON.stringify({
+    //   let userFromLocalStorage = JSON.parse(localStorage.getItem("user"));
+    //   console.log(
+    //     "THE USER",
+    //     userFromLocalStorage,
+    //     JSON.stringify(userFromLocalStorage)
+    //   );
+    //   userFromLocalStorage?.token?.error
+    //     ? setErrState({
+    //         state: true,
+    //         msg: userFromLocalStorage.token.errors[0].details,
+    //       })
+    //     : setErrState({
+    //         state: false,
+    //         msg: "",
+    //       });
+    //   setSuccState({
+    //     state: true,
+    //     msg: "Yeah ! Logged in successfully",
+    //   });
+    // } catch (errorMsg) {
+    //   setErrState({
+    //     state: true,
+    //     msg: errorMsg,
+    //   });
+    // }
+
+    // var data = JSON.stringify({
     //   email: email,
     //   password: password,
     // });
 
-    // var requestOptions = {
-    //   method: "POST",
-    //   headers: myHeaders,
-    //   body: raw,
-    //   mode: "no-cors",
-    //   // redirect: "follow",
+    // var config = {
+    //   method: "post",
+    //   url: baseurl + "/apiauth/authenticate",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   data: data,
     // };
 
-    // fetch("http://localhost:8080/apiauth/authenticate", requestOptions)
-    //   // .then(response => {
-    //   //   console.log(JSON.stringify(response));
-    //   // })
-    //   .then((response) => response.text())
-    //   .then((result) => console.log(result))
-    //   .catch((error) => console.log("error", error));
-    
-    var data = JSON.stringify({
-      email: email,
-      password: password
-    });
-
-    var config = {
-      method: "post",
-      url: baseurl + "/apiauth/authenticate",
-      headers: {
-        "Content-Type": "application/json",
-        // 'Access-Control-Allow-Origin' : '*',
-        // 'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-      },
-      data: data,
-    };
-
-    axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    event.preventDefault();
+    // axios(config)
+    //   .then(function (response) {
+    //     console.log(JSON.stringify(response.data));
+    //     // console.log("user");
+    //     localStorage.setItem("user", response.data);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   }
 
   if (authMode === "signin") {
     return (
-      <div className="Auth-form-container">
-        <form className="Auth-form">
-          <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Sign In</h3>
-            <div className="text-center">
-              Not registered yet?{" "}
-              <span className="link-primary" onClick={changeAuthMode}>
-                Sign Up
-              </span>
+      <div>
+        {loginResponse?.status === "error" ? (
+          <>
+            <Alert id="error" variant="danger" dismissible>
+              <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+              <p>{loginResponse.response}</p>
+            </Alert>
+          </>
+        ) 
+        : 
+        loginResponse?.status === "success" ?
+          <>
+            <Alert id="success" variant="success" dismissible>
+              <Alert.Heading>Great! Good Job</Alert.Heading>
+              <p>{loginResponse.response}</p>
+            </Alert>
+          </> : <></>
+        }
+        <div className="Auth-form-container">
+          <form className="Auth-form">
+            <div className="Auth-form-content">
+              <h3 className="Auth-form-title">Sign In</h3>
+              <div className="text-center">
+                Not registered yet?{" "}
+                <span className="link-primary" onClick={changeAuthMode}>
+                  Sign Up
+                </span>
+              </div>
+              <div className="form-group mt-3">
+                <label type="text">Email address</label>
+                <input
+                  type="email"
+                  className="form-control mt-1"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="form-group mt-3">
+                <label>Password</label>
+                <input
+                  type="password"
+                  className="form-control mt-1"
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="d-grid gap-2 mt-3">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  onClick={Login}
+                >
+                  Submit
+                </button>
+              </div>
+              <p className="text-center mt-2">
+                Forgot <a href="#">password?</a>
+              </p>
             </div>
-            <div className="form-group mt-3">
-              <label type="text">Email address</label>
-              <input
-                type="email"
-                className="form-control mt-1"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="form-group mt-3">
-              <label>Password</label>
-              <input
-                type="password"
-                className="form-control mt-1"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary" onClick={Login}>
-                Submit
-              </button>
-            </div>
-            <p className="text-center mt-2">
-              Forgot <a href="#">password?</a>
-            </p>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

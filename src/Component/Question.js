@@ -14,7 +14,7 @@ export const Question = (props) => {
           <Accordion>
             {
               items.map((item, index) => {
-                console.log(item, "index" + index);
+                // console.log(item, "index" + index);
                 return <><Accordion.Item eventKey={index}>
 
                   <Accordion.Header>{item.header}</Accordion.Header>

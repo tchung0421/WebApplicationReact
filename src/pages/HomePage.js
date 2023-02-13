@@ -12,41 +12,26 @@ import { Instructor } from "../Component/Instructor";
 import { ContactInfo } from "../Component/ContactInfo";
 import { useState, useEffect } from "react";
 import LoadingSpinner from "../Component/Spinner";
+import { Modal} from 'react-bootstrap';
+import { Registor } from "../Component/Registration";
+import '../style/bootcampstyles.css';
+import AuthServices from "../Services/AuthServices";
 
-export const Home = () => {
+export const Home = (props) => {
 
-    const baseUrl = "http://localhost:8080";
-    const [menuItems, setMenuItems] = useState();
-    let menuItemsT = []
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
-    useEffect(() => {
-        async function getMenus() {
-            try {
-                const response = await fetch("http://localhost:8080/uisettings/menus")
-                let json = response.json()
-                json.then(data => {
-                    setMenuItems(data)
-                    console.log("All Data ", menuItems)
-                })
-            } catch (error) {
-                setMenuItems([
-                    { text: "Home", href: "/" },
-                    { text: "Contact", href: "/bootcamps" },
-                    { text: "Abou Us", href: "/about" },
-                    { text: "Bootcamps", href: "/bootcamps" },
-                    { text: "Login & Signup", href: "/login" }
-                ])
-            }
-        }
-        getMenus() // IIF
-    }, [])
+    console.log(user);
 
-    // const menuItems=[
-    //     {text:"What You'll Learn",href:"/whatYouWill"},
-    //     {text:"Home", href:"/home"},
-    //     {text:"Contact",href:"/contact"},
-    //     {text:"Abou Us",href:"/about"}, 
-    // ]
+    const menuItems = [
+        {text: "Home", href: "/"},
+        {text: "Contact", href: "/contact"},
+        {text: "About Us", href: "/about"},
+        {text: "Bootcamps", href: "/bootcamps"},
+    ]
 
     const items = [
         { header: "React Js", body: "React Js  A common task for a web server can be to open a file on the server and return the content to the client. Here is how PHP or ASP handles a file request: Sends the task to the computer's file system. Waits while the file system opens and reads the file. Returns the content to the client. Ready to handle the next request. Here is how Node.js handles a file request: Sends the task to the computer's file system. Ready to handle the next request.When the file system has opened and read the file, the server returns the content to the client. Node.js eliminates  The waiting, and simply continues with the next request. Node.js runs single-threaded, non-blocking, asynchronous programming, which is very memory efficient." },
@@ -60,17 +45,12 @@ export const Home = () => {
         alert(e.target.id + "Was clicked");
     }
 
-    /* 
-        const instructors=[
-            {profile:"",name:""}
-        ] */
-
     if (!menuItems) return <div> <LoadingSpinner></LoadingSpinner> </div>
 
     return (
         <>
         <div>
-            <NavBar items={menuItems}></NavBar>
+            <NavBar user={user} handleClose={handleClose} handleShow={handleShow} items={menuItems}></NavBar>
             <HeadSection></HeadSection>                
             <SignUpSection></SignUpSection>
             <ClassTypeSection></ClassTypeSection>
@@ -82,6 +62,19 @@ export const Home = () => {
             <ContactInfo></ContactInfo>
             <Footer></Footer>
             </div>
+
+            <Modal
+                show={show}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                </Modal.Header>
+                <Modal.Body>
+                <Registor></Registor>
+                </Modal.Body>
+            </Modal>
         </>
     )
 }

@@ -7,6 +7,9 @@ import { Home } from "./pages/HomePage";
 import BootcampDetails from "./pages/BootcampDetail";
 import { SignUpAndSigninPage } from "./pages/RegistrationPage";
 import { FetchData } from "./pages/FetchData";
+import { Profile } from "./Component/Profile";
+import AuthServices from "./Services/AuthServices";
+
 
 const router = createBrowserRouter([
 
@@ -64,6 +67,16 @@ const router = createBrowserRouter([
         <>
           <SignUpAndSigninPage></SignUpAndSigninPage>
           <Link to="/login"></Link>
+        </>
+    )
+  }
+  ,
+  {
+    path: "/profile",
+    element: (
+        <>
+          <Profile profile={AuthServices.getCurrentUser()}></Profile>
+          <Link to="/profile"></Link>
         </>
     )
   }

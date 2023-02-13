@@ -9,7 +9,6 @@ export const SignUpAndSigninPage = () => {
         { text: "Contact", href: "/contact" },
         { text: "About Us", href: "/aboutus" },
         { text: "Bootcamps", href: "/bootcamps" },
-        { text: "Login & Signup", href: "/login" }
     ]
 
     return (

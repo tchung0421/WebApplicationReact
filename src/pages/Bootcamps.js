@@ -29,15 +29,19 @@ const Bootcamp = (props) => {
     );
 }
 
-const baseUrl = "http://localhost:8080/api";
+const baseUrl = "http://localhost:8077/api";
 const Bootcamps = (props) => {
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
     const menuItems = [
         { text: "Home", href: "/" },
         { text: "Contact", href: "/contact" },
         { text: "About Us", href: "/aboutus" },
         { text: "Bootcamps", href: "/bootcamps" },
-        { text: "Login & Signup", href: "/login" }
     ]
 
     const [bootcamps, setBootcamps] = useState([])
@@ -53,7 +57,7 @@ const Bootcamps = (props) => {
                 })
             } 
             catch (error) {
-                console.log("Reading Bootcamp 1",BootcampList)
+                console.log("Reading Bootcamp 1", BootcampList)
                 setBootcamps(BootcampList.BootcampList)
             }
         }
@@ -63,7 +67,7 @@ const Bootcamps = (props) => {
     if (!bootcamps) return <>Loading ....</>
     return (
         <>
-            <NavBar items={menuItems}></NavBar>
+            <NavBar user={user} handleClose={handleClose} handleShow={handleShow} items={menuItems}></NavBar>
             <HeadSection></HeadSection>
             <BootCampSeaerchBar></BootCampSeaerchBar>
             <Container>

@@ -15,7 +15,6 @@ const BootcampDetails = () => {
         { text: "Contact", href: "/contact" },
         { text: "About Us", href: "/about" },
         { text: "Bootcamps", href: "/bootcamps" },
-        { text: "Login & Signup", href: "/login" }
     ]
 
     let [bootcampList, setBootcampList] = useState()
@@ -25,7 +24,7 @@ const BootcampDetails = () => {
         async function getMenus() {
 
             try {
-                const response = await fetch("http://localhost:8080/uisettings/menus")
+                const response = await fetch("http://localhost:8077/uisettings/menus")
                 let json = response.json()
                 json.then(data => {
                     setBootcampList(data)
