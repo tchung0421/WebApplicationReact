@@ -9,6 +9,7 @@ import { SignUpAndSigninPage } from "./pages/RegistrationPage";
 import { FetchData } from "./pages/FetchData";
 import { Profile } from "./Component/Profile";
 import AuthServices from "./Services/AuthServices";
+import Dashboard from "./pages/Dashboard";
 
 
 const router = createBrowserRouter([
@@ -71,6 +72,18 @@ const router = createBrowserRouter([
     )
   }
   ,
+
+  
+
+  {
+    path: "/dashboard",
+    element: (
+        <>
+          <Dashboard profile={AuthServices.getCurrentUser()}></Dashboard>
+          <Link to="/profile"></Link>
+        </>
+    )
+  },
   {
     path: "/profile",
     element: (

@@ -1,5 +1,7 @@
 
-const API_AUTH_URL = "http://localhost:8077/apiauth/authenticate";
+import { baseurl } from "../include/Urlinclude";
+const API_AUTH_URL = baseurl+ "/apiauth/authenticate";       
+                                        
 
 class AuthService
 {
@@ -25,9 +27,9 @@ class AuthService
           .then(response => response.json())
           .then(result => {
             localStorage.removeItem("user");
-            console.log("Old User Removed, Inside The Response before saving");
+            console.log("Old User Removed, Inside The Response before saving"+result);
             localStorage.setItem("user", JSON.stringify(result)); 
-            console.log("New User added, Inside The Response after saving");   
+            console.log("New User added, Inside The Response after saving"+ result);   
             return result;
         }) 
         .catch(error => {        

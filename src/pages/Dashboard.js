@@ -1,23 +1,15 @@
-import { Footer } from "../Component/Footer";
-import { HeadSection } from "../Component/HeadSection";
-import { NavBar } from "../Component/Nav";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { SignUpSection } from "../Component/signUpSection";
-import { ClassTypeSection } from "../Component/ClassTypeSection";
-import { SocialMediaSection } from "../Component/SocialMediaSection";
-import { FundamentalsDetails } from "../Component/FundamentalsDetails";
-import { LearnReactDetails } from "../Component/LearnReactDetails";
-import { Question } from "../Component/Question";
-import { Instructor } from "../Component/Instructor";
-import { ContactInfo } from "../Component/ContactInfo";
-import { useState, useEffect } from "react";
-import LoadingSpinner from "../Component/Spinner";
-import { Modal} from 'react-bootstrap';
+import { useState } from "react";
+import { Modal } from "react-bootstrap"
+import HeaderBar from "../Component/DashNav/HeaderBar";
+import SideNavBar from "../Component/DashNav/Sidebar";
+import { Footer } from "../Component/Footer"
+import { NavBar } from "../Component/Nav"
 import { Registor } from "../Component/Registration";
-import '../style/bootcampstyles.css';
-import AuthServices from "../Services/AuthServices";
+import LoadingSpinner from "../Component/Spinner";
 
-export const Home = (props) => {
+
+const Dashboard = (props) => {
+
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -27,10 +19,10 @@ export const Home = (props) => {
     console.log(user);
 
     const menuItems = [
-        {text: "Home", href: "/"},
-        {text: "Contact", href: "/contact"},
-        {text: "About Us", href: "/about"},
-        {text: "Bootcamps", href: "/bootcamps"},
+        { text: "Home", href: "/" },
+        { text: "Contact", href: "/contact" },
+        { text: "About Us", href: "/about" },
+        { text: "Bootcamps", href: "/bootcamps" },
     ]
 
     const items = [
@@ -46,21 +38,16 @@ export const Home = (props) => {
     }
 
     if (!menuItems) return <div> <LoadingSpinner></LoadingSpinner> </div>
-
     return (
         <>
-        <div>
-            <NavBar user={user} handleClose={handleClose} handleShow={handleShow} items={menuItems}></NavBar>
-            <HeadSection></HeadSection>                
-            <SignUpSection></SignUpSection>
-            <ClassTypeSection></ClassTypeSection>
-            <SocialMediaSection></SocialMediaSection>
-            <FundamentalsDetails></FundamentalsDetails>
-            <LearnReactDetails></LearnReactDetails>
-            <Question items={items} itemEvent={itemEvent}></Question>
-            <Instructor></Instructor>
-            <ContactInfo></ContactInfo>
-            <Footer></Footer>
+            <div>
+            <HeaderBar></HeaderBar>
+            <div className="mt-5"><h1 className="mt-5">Dashboard : </h1></div>
+            <SideNavBar></SideNavBar>
+           
+                dsadasasdasdsa
+
+                <Footer></Footer>
             </div>
 
             <Modal
@@ -72,9 +59,13 @@ export const Home = (props) => {
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>
-                <Registor handleClose={handleClose}></Registor>
+                    <Registor handleClose={handleClose}></Registor>
                 </Modal.Body>
             </Modal>
         </>
     )
+
 }
+
+
+export default Dashboard

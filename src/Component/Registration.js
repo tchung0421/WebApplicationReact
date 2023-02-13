@@ -1,20 +1,31 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert } from "react-bootstrap";
+import { Navigate, redirect, useNavigate } from "react-router-dom";
 import { baseurl } from "../include/Urlinclude";
 import AuthServices from "../Services/AuthServices";
 
-export const Registor = () => {
+export const Registor = (props) => {
   const [authMode, setAuthMode] = useState("signin");
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
   const [email, setEmail] = useState("");
   const [lastname, setLastname] = useState("");
+  
   const [mobilenumber, setMobilenumber] = useState("");
   const [loginResponse, setLoginResponse] = useState({
     state: false,
     msg: "",
   });
+
+  useEffect( ()=>{
+    if(loginResponse.status=="success"){
+        alert("loginResponse",loginResponse.status)
+        props.handleClose()
+        //return redirect("/login");
+    }
+  }
+   ,[loginResponse])
 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin");
@@ -47,6 +58,8 @@ export const Registor = () => {
         console.log(error);
       });
   }
+  
+
 
   async function Login(event) {
     event.preventDefault();
@@ -56,7 +69,9 @@ export const Registor = () => {
       console.log("THE USER", storageUser);
       if (storageUser) {
         setLoginResponse(storageUser);
+        return redirect("/dasdasd");
       }
+
       console.log("THE State", loginResponse);
     } 
     catch (errorMsg) {
@@ -120,6 +135,8 @@ export const Registor = () => {
   if (authMode === "signin") {
     return (
       <div>
+
+
         {loginResponse?.status === "error" ? (
           <>
             <Alert id="error" variant="danger" dismissible>
@@ -131,9 +148,14 @@ export const Registor = () => {
         : 
         loginResponse?.status === "success" ?
           <>
+        
+          
             <Alert id="success" variant="success" dismissible>
               <Alert.Heading>Great! Good Job</Alert.Heading>
-              <p>{loginResponse.response}</p>
+              
+                {loginResponse.status && (
+                  <Navigate to="/dashboard" replace={true} />
+                )}
             </Alert>
           </> : <></>
         }
