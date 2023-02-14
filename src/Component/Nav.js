@@ -4,8 +4,11 @@ import AuthServices from "../Services/AuthServices.js";
 import { Button } from "react-bootstrap";
 import "../style/bootcampstyles.css";
 import guestUser from "../img/user-login-icon.svg";
+import Logout from "./Logout.js";
 
 export const NavBar = (props) => {
+
+
   // const [currentUser, setCurrentUser] = useState(props.user);
   
   // useEffect(() => {
@@ -61,8 +64,10 @@ export const NavBar = (props) => {
                       <img src={guestUser} className="ico-us"></img>
                       View Profile
                     </div>
+                   
                   </div>
                 </Link>
+                <Logout isLoggedIn={false}></Logout>
               </>
             ) : (
               <>
@@ -96,6 +101,7 @@ export const NavBar = (props) => {
                         <Button onClick={props.handleShow}>
                           Log In/Sign Up
                         </Button>
+                    
                       </span>
                     </a>
                   </div>

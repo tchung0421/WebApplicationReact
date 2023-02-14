@@ -32,14 +32,36 @@ class SideNavBar extends React.Component {
             </NavIcon>
             <NavText>Home</NavText>
           </NavItem>
-          <NavItem eventKey="my progress">
+
+
+          <NavItem eventKey="progress">
             <NavIcon>
               <i
                 className="fa fa-fw fa-line-chart"
                 style={{ fontSize: "1.75em" }}
               />
             </NavIcon>
-            <NavText>placed orders</NavText>
+            <NavText>Progress</NavText>
+          </NavItem>
+
+          <NavItem eventKey="myprofile">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText>My Profile</NavText>
+          </NavItem>
+
+          <NavItem eventKey="bootcamps">
+            <NavIcon>
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+            </NavIcon>
+            <NavText>Bootcamps</NavText>
           </NavItem>
         </SideNav.Nav>
       </SideNav>

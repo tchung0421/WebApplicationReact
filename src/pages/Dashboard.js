@@ -40,8 +40,11 @@ const Dashboard = (props) => {
     if (!menuItems) return <div> <LoadingSpinner></LoadingSpinner> </div>
     return (
         <>
-            <div>
-            <HeaderBar></HeaderBar>
+            <div> 
+            <HeaderBar>
+                    <span></span>
+
+            </HeaderBar>
             <div className="mt-5"><h1 className="mt-5">Dashboard : </h1></div>
             <SideNavBar></SideNavBar>
            
