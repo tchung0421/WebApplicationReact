@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { redirect, useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Logout = (props) => {
 
@@ -30,9 +31,9 @@ const Logout = (props) => {
         <div>
            
             {/* <span> You're currently {currentStatus} </span> */}
-            <button className="log-in" onClick={handleClick}>
+            <Button className="log-in" onClick={handleClick}>
                 {buttonStatus}
-            </button>
+            </Button>
         </div>
     );
 }
