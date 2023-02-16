@@ -8,6 +8,7 @@ import SideNav, {
   NavIcon,
   NavText
 } from "@trendmicro/react-sidenav";
+import { Link, NavLink } from "react-router-dom";
 
 class SideNavBar extends React.Component {
   constructor(props) {
@@ -19,6 +20,9 @@ class SideNavBar extends React.Component {
 
   render() {
     return (
+<>
+      
+
       <SideNav expanded={this.state.isVisible}>
         <SideNav.Toggle
           onClick={() => {
@@ -26,14 +30,31 @@ class SideNavBar extends React.Component {
           }}
         />
         <SideNav.Nav defaultSelected="home">
-          <NavItem eventKey="home">
+        <Link to="/dashboard" className="nav">
+          <NavItem eventKey="home" >
             <NavIcon>
+            
               <i className="fa fa-fw fa-home" style={{ fontSize: "1.75em" }} />
+            
             </NavIcon>
             <NavText>Home</NavText>
           </NavItem>
+          </Link>
 
-
+          <Link to="/profile">
+          <NavItem eventKey="myprofile">
+            <NavIcon>
+            
+              <i
+                className="fa fa-fw fa-line-chart"
+                style={{ fontSize: "1.75em" }}
+              />
+      
+            </NavIcon>
+                   
+            <NavText>My Profile</NavText>
+          </NavItem>
+          </Link> 
           <NavItem eventKey="progress">
             <NavIcon>
               <i
@@ -41,17 +62,7 @@ class SideNavBar extends React.Component {
                 style={{ fontSize: "1.75em" }}
               />
             </NavIcon>
-            <NavText>Progress</NavText>
-          </NavItem>
-
-          <NavItem eventKey="myprofile">
-            <NavIcon>
-              <i
-                className="fa fa-fw fa-line-chart"
-                style={{ fontSize: "1.75em" }}
-              />
-            </NavIcon>
-            <NavText>My Profile</NavText>
+            <NavText>My Progress</NavText>
           </NavItem>
 
           <NavItem eventKey="bootcamps">
@@ -65,6 +76,7 @@ class SideNavBar extends React.Component {
           </NavItem>
         </SideNav.Nav>
       </SideNav>
+      </>
     );
   }
 }

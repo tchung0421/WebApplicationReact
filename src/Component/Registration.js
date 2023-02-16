@@ -43,7 +43,7 @@ export const Registor = (props) => {
 
     var config = {
       method: "post",
-      url: baseurl + "/api/v1/user/signup",
+      url: baseurl + "/apiauth/signup",
       headers: {
         "Content-Type": "application/json",
       },

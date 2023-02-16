@@ -7,9 +7,10 @@ import { Home } from "./pages/HomePage";
 import BootcampDetails from "./pages/BootcampDetail";
 import { SignUpAndSigninPage } from "./pages/RegistrationPage";
 import { FetchData } from "./pages/FetchData";
-import { Profile } from "./Component/Profile";
+import ProfilePage  from "./pages/ProfilePage"
 import AuthServices from "./Services/AuthServices";
 import Dashboard from "./pages/Dashboard";
+
 
 
 const router = createBrowserRouter([
@@ -80,7 +81,7 @@ const router = createBrowserRouter([
     element: (
         <>
           <Dashboard profile={AuthServices.getCurrentUser()}></Dashboard>
-          <Link to="/profile"></Link>
+          <Link to="/dashboard"></Link>
         </>
     )
   },
@@ -88,7 +89,7 @@ const router = createBrowserRouter([
     path: "/profile",
     element: (
         <>
-          <Profile profile={AuthServices.getCurrentUser()}></Profile>
+          <ProfilePage profile={AuthServices.getCurrentUser()}></ProfilePage>
           <Link to="/profile"></Link>
         </>
     )

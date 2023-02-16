@@ -4,12 +4,12 @@ import HeaderBar from "../Component/DashNav/HeaderBar";
 import SideNavBar from "../Component/DashNav/Sidebar";
 import { Footer } from "../Component/Footer"
 import { NavBar } from "../Component/Nav"
-import ProfilePage, { Profile } from "../Component/Profile";
+import Profile from "../Component/Profile"
 import { Registor } from "../Component/Registration";
 import LoadingSpinner from "../Component/Spinner";
 
 
-const Dashboard = (props) => {
+const ProfilePage = (props) => {
 
 
     const [show, setShow] = useState(false);
@@ -48,7 +48,9 @@ const Dashboard = (props) => {
             <SideNavBar></SideNavBar>
             </div>
             <div>
-                
+           dsdsds
+                <Profile className="profileBody"></Profile>
+
             </div>
             <Footer></Footer>
             <Modal
@@ -69,4 +71,4 @@ const Dashboard = (props) => {
 }
 
 
-export default Dashboard
+export default ProfilePage

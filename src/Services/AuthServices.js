@@ -1,4 +1,5 @@
 
+import axios from "axios";
 import { baseurl } from "../include/Urlinclude";
 const API_AUTH_URL = baseurl+ "/apiauth/authenticate";       
                                         
@@ -45,6 +46,9 @@ class AuthService
         return localStorage.removeItem("user");       
     }
 
+    async getProfile(){
+     
+    }
     // register
     getCurrentUser() {
         return localStorage.getItem("user");
