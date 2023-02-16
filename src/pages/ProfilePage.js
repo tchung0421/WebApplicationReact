@@ -4,7 +4,7 @@ import HeaderBar from "../Component/DashNav/HeaderBar";
 import SideNavBar from "../Component/DashNav/Sidebar";
 import { Footer } from "../Component/Footer"
 import { NavBar } from "../Component/Nav"
-import Profile from "../Component/Profile"
+import {Profile} from "../Component/Profile"
 import { Registor } from "../Component/Registration";
 import LoadingSpinner from "../Component/Spinner";
 
